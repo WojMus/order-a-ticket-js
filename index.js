@@ -40,7 +40,7 @@ window.addEventListener("load", () => {
     navigator.geolocation.getCurrentPosition((position) => {
       long = position.coords.longitude;
       lat = position.coords.latitude;
-      const api = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=ac4cd886a8a9e22cfa749a2bd871f9a9`;
+      const api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=ac4cd886a8a9e22cfa749a2bd871f9a9`;
       fetch(api)
         .then((response) => {
           //jeśli tylko weźmie info od fetcha to się zrobi ten .then
@@ -402,7 +402,7 @@ valueOfCurrency.value = "";
 currencyChosen.addEventListener("change", countCurrency);
 function countCurrency() {
   fetch(
-    `http://api.nbp.pl/api/exchangerates/rates/a/${currencyChosen.value}/?format=json/`
+    `https://api.nbp.pl/api/exchangerates/rates/a/${currencyChosen.value}/?format=json/`
   )
     .then((resp) => resp.json())
     .then(function (data) {
