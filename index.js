@@ -529,7 +529,7 @@ function displaySummary() {
 function payForTickets() {
   document.querySelector(
     ".pay-for-tickets"
-  ).innerHTML = `<button class="btn btn-primary" id="pay-button" type="button">Zapłać za bilet</button>`;
+  ).innerHTML = `<button class="btn btn-primary pay-for-the-tickets" id="pay-button" type="button">Zapłać za bilet</button>`;
   const btnPayForTicket = document.getElementById("pay-button");
   btnPayForTicket.addEventListener("click", function openAlertAndLogin(ev) {
     ev.preventDefault();
