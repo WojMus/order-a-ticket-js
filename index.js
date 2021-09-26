@@ -97,6 +97,7 @@ let currentDay = today.getDate() <= 9 ? "0" + today.getDate() : today.getDate();
 let minDate = currentYear + "-" + currentMonth + "-" + currentDay;
 //Overwrite input in html file, set min value
 document.getElementById("deperture-date").setAttribute("min", minDate);
+document.getElementById("arrival-date").setAttribute("min", minDate);
 //assign departure date to variable
 //const test2 = setDepartureDate;
 function setDepartureDate() {
@@ -176,7 +177,6 @@ const inputLoginPassword = document.querySelector(".password-log-in");
 let currentAccount;
 
 btnLogin.addEventListener("click", function (e) {
-  // Prevent form from submitting
   e.preventDefault();
 
   fetch("https://api.jsonbin.io/b/6145e0379548541c29b4506e/8")
@@ -191,6 +191,7 @@ btnLogin.addEventListener("click", function (e) {
         hideLoginAndRegister();
       } else {
         alert("Niepoprawne dane logowania, spróbuj ponownie");
+        return false;
       }
 
       //clear input fields
@@ -384,6 +385,10 @@ summaryButton.addEventListener("click", function (e) {
     alert("Wprowadź różne miejsca");
     return false;
   }
+  if (departureDateInput > arrivalDateInput) {
+    alert("Data wylotu musi być wcześniejsza niż data powrotu");
+    return false;
+  }
   displaySummary();
 
   payForTickets();
@@ -499,7 +504,7 @@ function displaySummary() {
         ? `${
             numberOfPassengers > 2 ? costTwo / 2 : costThree * 3
           }zł łacznie z bagażem płatnym`
-        : `${numberOfPassengers > 2 ? costTwo / 10 : costThree / 10}zł`
+        : `${numberOfPassengers > 2 ? costOne * 3 : costThree * 3.5}zł`
     }`;
   if (arrivalCity === "Nowy Jork")
     document.getElementById(
@@ -509,7 +514,7 @@ function displaySummary() {
         ? `${
             numberOfPassengers > 2 ? costTwo * 2 : costOne * 2
           }zł łacznie z bagażem płatnym`
-        : `${numberOfPassengers > 2 ? costTwo / 10 : costOne / 10}zł`
+        : `${numberOfPassengers > 2 ? costTwo * 3 : costOne * 2.5}zł`
     }`;
   if (arrivalCity === "Warszawa")
     document.getElementById(
@@ -519,7 +524,7 @@ function displaySummary() {
         ? `${
             numberOfPassengers > 2 ? costThree * 3 : costOne * 2
           }zł łacznie z bagażem płatnym`
-        : `${numberOfPassengers > 2 ? costThree / 10 : costOne / 10}zł`
+        : `${numberOfPassengers > 2 ? costThree * 4 : costOne * 2.5}zł`
     }`;
 }
 
