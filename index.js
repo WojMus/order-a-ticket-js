@@ -23,50 +23,6 @@ document.querySelectorAll(".nav-link").forEach(function (el) {
 });
 
 ////////////////////////////////////////////////////////////
-///////////////////// WEATHER API //////////////////////////
-////////////////////////////////////////////////////////////
-window.addEventListener("load", () => {
-  let long;
-  let lat;
-  let locationCountry = document.querySelector(".weather-country-code");
-  let locationCity = document.querySelector(".weather-city-name");
-  let temperatureDegree = document.querySelector(".weather-temperature");
-  let temperatureSection = document.querySelector(
-    ".weather-api-container span"
-  );
-  let temperatureDescription = document.querySelector(".weather-description");
-
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((position) => {
-      long = position.coords.longitude;
-      lat = position.coords.latitude;
-      const api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=ac4cd886a8a9e22cfa749a2bd871f9a9`;
-      fetch(api)
-        .then((response) => {
-          //jeśli tylko weźmie info od fetcha to się zrobi ten .then
-          return response.json();
-        })
-        .then((data) => {
-          const temp = data.main.temp;
-          const summary = data.weather[0].description;
-          const country = data.sys.country;
-          const city = data.name;
-          let celcius = Math.floor(temp - 273.15);
-          //set DOM elements from the API
-          temperatureDegree.textContent = celcius;
-          temperatureDescription.textContent = summary;
-          locationCountry.textContent = country;
-          locationCity.textContent = city;
-          temperatureSection.textContent = "°C";
-        });
-    });
-  } else {
-    document.querySelector(".weather-api-container").innerHTML =
-      "Musisz włączyć lokalizację";
-  }
-});
-
-////////////////////////////////////////////////////////////
 ///////////////////// CURRENT TIME /////////////////////////
 ////////////////////////////////////////////////////////////
 
@@ -116,6 +72,7 @@ function showCalendar() {
   //showCalendar.classList.remove("hidden");
   document.getElementById("arrival-date").setAttribute("min", departureDate);
 }
+
 ////////////////////////////////////////////////////////////
 ///////////////////// CURRENT DATE /////////////////////////
 ////////////////////////////////////////////////////////////
@@ -199,6 +156,49 @@ btnLogin.addEventListener("click", function (e) {
     });
 });
 
+////////////////////////////////////////////////////////////
+///////////////////// WEATHER API //////////////////////////
+////////////////////////////////////////////////////////////
+window.addEventListener("load", () => {
+  let long;
+  let lat;
+  let locationCountry = document.querySelector(".weather-country-code");
+  let locationCity = document.querySelector(".weather-city-name");
+  let temperatureDegree = document.querySelector(".weather-temperature");
+  let temperatureSection = document.querySelector(
+    ".weather-api-container span"
+  );
+  let temperatureDescription = document.querySelector(".weather-description");
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      long = position.coords.longitude;
+      lat = position.coords.latitude;
+      const api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=ac4cd886a8a9e22cfa749a2bd871f9a9`;
+      fetch(api)
+        .then((response) => {
+          //jeśli tylko weźmie info od fetcha to się zrobi ten .then
+          return response.json();
+        })
+        .then((data) => {
+          const temp = data.main.temp;
+          const summary = data.weather[0].description;
+          const country = data.sys.country;
+          const city = data.name;
+          let celcius = Math.floor(temp - 273.15);
+          //set DOM elements from the API
+          temperatureDegree.textContent = celcius;
+          temperatureDescription.textContent = summary;
+          locationCountry.textContent = country;
+          locationCity.textContent = city;
+          temperatureSection.textContent = "°C";
+        });
+    });
+  } else {
+    document.querySelector(".weather-api-container").innerHTML =
+      "Musisz włączyć lokalizację";
+  }
+});
 ///////////////////////////////////////////////////////////
 /////////////// REGISTRATION FORM OPEN ////////////////////
 ///////////////////////////////////////////////////////////
@@ -268,7 +268,8 @@ function handleSelect(e) {
 }
 
 function createOptionValues() {
-  let numberOfSeatsToSelect = `<option selected disabled value="">Wybierz l.pasażerów</option>`;
+  // let numberOfSeatsToSelect = `<option selected disabled value="">Wybierz l.pasażerów</option>`;
+  let numberOfSeatsToSelect = "";
   for (let i = 1; i <= 19; i++) {
     numberOfSeatsToSelect =
       numberOfSeatsToSelect +
@@ -329,12 +330,9 @@ summaryButton.addEventListener("click", function (e) {
   ).value;
   const typeOfLuggage = document.getElementById("luggage-choose").value;
   const chosenSeatOne = document.querySelector(".passengers-seat").value;
-  let chosenSeatTwo = document.querySelector(".passengers-seat-v2").value;
-  let chosenSeatThree = document.querySelector(".passengers-seat-v3").value;
-  let chosenSeatFour = document.querySelector(".passengers-seat-v4").value;
-  const departureHour = Math.floor(Math.random() * 10) + 5;
-  //const arrivarHour = departureHour + 5;
-  //const departureMinute = Math.floor(Math.random() * 59) + 1;
+  const chosenSeatTwo = document.querySelector(".passengers-seat-v2").value;
+  const chosenSeatThree = document.querySelector(".passengers-seat-v3").value;
+  const chosenSeatFour = document.querySelector(".passengers-seat-v4").value;
 
   if (departureCity == "") {
     alert("Wprowadź miejsce wylotu");
@@ -365,24 +363,27 @@ summaryButton.addEventListener("click", function (e) {
     return false;
   }
   if (numberOfPassengers == 2 && chosenSeatOne == chosenSeatTwo) {
-    alert("Wprowadź różne miejsca");
+    alert("Wprowadź różne miejsca1");
     return false;
   }
   if (
-    (numberOfPassengers == 3 && chosenSeatOne == chosenSeatTwo) ||
-    chosenSeatOne == chosenSeatThree ||
-    chosenSeatTwo == chosenSeatThree
+    numberOfPassengers == 3 &&
+    (chosenSeatOne == chosenSeatTwo ||
+      chosenSeatOne == chosenSeatThree ||
+      chosenSeatTwo == chosenSeatThree)
   ) {
-    alert("Wprowadź różne miejsca");
+    alert("Wprowadź różne miejsca2");
     return false;
   }
   if (
-    (numberOfPassengers === 4 && chosenSeatOne == chosenSeatTwo) ||
-    chosenSeatOne == chosenSeatThree ||
-    chosenSeatTwo == chosenSeatThree ||
-    chosenSeatOne == chosenSeatFour
+    numberOfPassengers == 4 &&
+    (chosenSeatOne == chosenSeatTwo ||
+      chosenSeatOne == chosenSeatThree ||
+      chosenSeatTwo == chosenSeatThree ||
+      chosenSeatOne == chosenSeatFour ||
+      chosenSeatThree == chosenSeatFour)
   ) {
-    alert("Wprowadź różne miejsca");
+    alert("Wprowadź różne miejsca3");
     return false;
   }
   if (departureDateInput > arrivalDateInput) {
@@ -404,19 +405,27 @@ const currencyChosen = document.getElementById("currency");
 const currencyAfterChange = document.getElementById("selected");
 const valueOfCurrency = document.getElementById("currency-value");
 valueOfCurrency.value = "";
+let onlyNumbers = /^[0-9]+$/;
 currencyChosen.addEventListener("change", countCurrency);
+
 function countCurrency() {
   fetch(
     `https://api.nbp.pl/api/exchangerates/rates/a/${currencyChosen.value}/?format=json/`
   )
     .then((resp) => resp.json())
     .then(function (data) {
-      currencyAfterChange.innerHTML = `${
-        valueOfCurrency.value
-      }zł po przeliczeniu to:  
+      if (valueOfCurrency.value.match(onlyNumbers)) {
+        currencyAfterChange.innerHTML = `${
+          valueOfCurrency.value
+        }zł po przeliczeniu to:  
       ${(valueOfCurrency.value * data.rates[0].mid).toFixed(
         2
       )} ${currencyChosen.value.toUpperCase()}`;
+      } else {
+        currencyAfterChange.innerHTML = "";
+        alert("Wprowadź tylko liczby");
+        return false;
+      }
     });
 }
 
@@ -502,7 +511,7 @@ function displaySummary() {
     ).innerHTML = `Twój lot do ${arrivalCity}a kosztuje ${
       typeOfLuggage === "Płatny"
         ? `${
-            numberOfPassengers > 2 ? costTwo / 2 : costThree * 3
+            numberOfPassengers > 2 ? costOne * 2 : costThree * 3
           }zł łacznie z bagażem płatnym`
         : `${numberOfPassengers > 2 ? costOne * 3 : costThree * 3.5}zł`
     }`;
