@@ -1,0 +1,379 @@
+@import "./node_modules/bootstrap/scss/bootstrap";
+
+$gray: #e5e5e5;
+$orange: #fca311;
+$white: #ffffff;
+$dark_blue: #14213d;
+$black: #000000;
+$font_size_document: 20px;
+$one_houndred: 100%;
+$zero: 0;
+
+* {
+  box-sizing: content-box;
+}
+
+body {
+  background-color: $gray;
+  color: $black;
+  font-family: "Poppins", sans-serif;
+  margin-top: $zero;
+  margin-bottom: $zero;
+  overflow: scroll;
+  overflow-x: hidden;
+  font-size: $font_size_document;
+  margin: $zero;
+}
+/////////////////////////////////////////////////////
+///////////////////// NAV ///////////////////////////
+/////////////////////////////////////////////////////
+
+.navbar-custom {
+  background-color: $dark_blue;
+  justify-content: center !important;
+}
+
+.custom-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(252, 163, 17, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.custom-toggler.navbar-toggler {
+  border-color: $white;
+}
+
+.navbar .navbar-nav ul {
+  align-items: stretch;
+}
+
+.navbar-custom img {
+  background-color: $orange;
+}
+.navbar .navbar-brand {
+  color: $orange;
+  justify-content: left;
+}
+
+.navbar .navbar-brand:hover {
+  color: $white;
+}
+
+.navbar .navbar-nav .nav-link {
+  color: $orange;
+}
+
+.navbar .navbar-nav .nav-link:hover {
+  color: $white;
+}
+.navbar .navbar-nav {
+  width: 50%;
+}
+
+.log-in:hover,
+.register:hover {
+  color: $orange;
+}
+
+.log-in,
+.register,
+.message-log-in,
+.log-out {
+  padding-right: 2rem;
+  padding-left: 2rem;
+  text-decoration: none;
+  color: $white;
+}
+
+.message-log-in:hover {
+  color: $orange;
+  cursor: context-menu;
+}
+.log-out:hover {
+  color: $orange;
+}
+////////////////////////
+/////// END NAV ////////
+////////////////////////
+
+////////////////////////////////////////
+///////////// CONTAINER ////////////////
+////////////////////////////////////////
+
+/////////// HIDDEN FORMS ///////////////
+.hidden {
+  display: none;
+}
+.open-form-to-log-in,
+.open-form-to-register,
+.open-form-seat-choose {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $gray;
+  border: 1px solid $orange;
+  padding: 0.5rem;
+  border-radius: 5px;
+  box-shadow: $zero 3rem 5rem rgba($zero, $zero, $zero, 0.3);
+  z-index: 10;
+}
+
+.plane-image img {
+  border: 1px solid $orange;
+}
+
+.close-form-to-log-in,
+.close-form-to-register,
+.close-form-seat-choose {
+  float: right;
+  font-size: 1.5rem;
+  background-color: $dark_blue;
+  border: 1px solid $orange;
+  color: $orange;
+  border-radius: 10%;
+  padding-left: 2px;
+  height: 35px;
+  width: 25px;
+}
+.confirm-log-in,
+.confirm-register,
+.delete-seats,
+.confirm-seats {
+  font-size: 1.2rem;
+  background-color: $dark_blue !important;
+  border: 1px solid $orange;
+  color: $orange !important;
+  border-radius: 10%;
+}
+
+.overlay {
+  position: absolute;
+  top: $zero;
+  left: $zero;
+  width: 100vw;
+  height: 100vh;
+  background-color: $black;
+  opacity: 0.65;
+  z-index: 5;
+}
+///////// END HIDDEN FORMS ///////////
+
+.main-site {
+  height: 1800px;
+  width: $one_houndred;
+  display: flex;
+  position: absolute;
+  margin-top: $zero;
+  z-index: -1;
+  text-align: center;
+}
+
+.main-page-text {
+  height: 1800px;
+}
+.smaller-container-trip-data-choose {
+  width: 60%;
+  height: 1800px;
+  background-color: $gray;
+  opacity: 1;
+}
+
+.weather-api-container {
+  margin-top: 2px;
+  max-width: 1200px;
+  p {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+  span {
+    font-weight: bold !important;
+  }
+}
+
+.weather-data-api {
+  justify-content: center;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.weather-country-code {
+  text-align: center;
+  font-weight: bold;
+  color: $dark_blue;
+  margin: 1px;
+  text-decoration: underline;
+  text-decoration-color: $orange;
+}
+.weather-city-name {
+  text-align: center;
+  font-weight: bold;
+  color: $dark_blue;
+  margin: 1px;
+  text-decoration: underline;
+  text-decoration-color: $orange;
+}
+.weather-temperature {
+  width: 30px;
+  margin: 1px;
+  text-align: center;
+  font-weight: bold;
+  color: $dark_blue;
+  text-decoration: underline;
+  text-decoration-color: $orange;
+}
+
+.weather-description {
+  margin: 1px;
+  text-align: center;
+  font-weight: bold;
+  color: $dark_blue;
+  text-decoration: underline;
+  text-decoration-color: $orange;
+}
+.weather-container-current-date,
+.weather-container-current-time {
+  width: 50px;
+  margin: auto;
+  margin-bottom: 10px;
+  align-items: center;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: $dark_blue;
+  text-decoration: underline;
+  text-decoration-color: $orange;
+}
+.summary {
+  margin-left: 2px;
+  color: $dark_blue;
+  font-size: 1rem;
+  padding-left: 10px;
+  padding-top: 10px;
+  h3 {
+    font-size: 1.2rem !important;
+    font-weight: bold;
+    color: $dark_blue !important;
+    text-decoration: underline;
+    text-decoration-color: $orange;
+  }
+}
+#summary-costs {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+#name-log-input,
+#surname-log-input,
+#email-log-input,
+#phone-number,
+#password-reqister,
+#password-check,
+#title-log-input,
+#password-log-in,
+#email-log-in,
+.passengers-seat,
+.passengers-seat-v2,
+.passengers-seat-v3,
+.passengers-seat-v4,
+.plane-map-seat-choose {
+  margin: 5px;
+  background-color: $white;
+  color: $dark_blue;
+  border: 1px solid $orange;
+  border-radius: 10%;
+  font-weight: bold;
+  //display: flex;
+}
+
+#summary-button,
+.currencySelect {
+  background-color: $dark_blue !important;
+  color: $orange !important;
+}
+.plane-map-seat-choose {
+  background-color: $gray !important;
+  color: $dark_blue !important;
+}
+#currency-value {
+  max-width: 150px;
+}
+
+/////////////////////////////////////////////////////
+///////////////////// FOOTER ////////////////////////
+/////////////////////////////////////////////////////
+.footer {
+  height: 350px;
+  width: $one_houndred;
+  background-color: $dark_blue;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: $white;
+  font-size: $font_size_document;
+  margin: auto;
+}
+
+.footer-links {
+  margin: auto;
+  width: $one_houndred;
+  height: 70%;
+  background-color: $dark_blue;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  margin-bottom: $zero;
+}
+
+.footer-list {
+  background-color: $dark_blue;
+  display: flex;
+  margin: auto;
+  display: inline-block;
+  min-width: 100px;
+  text-align: justify;
+  color: $white;
+  padding-top: $zero;
+  font-size: 0.9rem;
+
+  ul > li {
+    text-decoration: none;
+    list-style-type: circle;
+  }
+}
+
+.row-fluid .footer-list-links {
+  list-style-type: none;
+}
+
+.row-fluid .footer-list-links .nav-link {
+  list-style-type: none;
+}
+.row-fluid .footer-links ul > li:first-child {
+  font-size: 1.2rem;
+  color: $orange;
+}
+
+.row-fluid .footer-links ul > li {
+  list-style-type: none;
+  text-decoration: none;
+}
+.row-fluid .footer-links ul > li a {
+  font-size: 0.9rem;
+  color: $white;
+}
+
+.row-fluid .footer-links ul > li a:hover {
+  color: $orange;
+  text-decoration: $orange;
+}
+.footer-list-links .nav-link {
+  width: auto;
+}
+
+.footer-bottom-text {
+  background-color: $dark_blue;
+  width: $one_houndred;
+  height: 40px;
+  text-align: center;
+  font-size: 1rem;
+  padding-top: 10px;
+}

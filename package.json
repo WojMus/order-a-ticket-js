@@ -1,0 +1,26 @@
+{
+  "name": "projekt_wsb_parcel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "dependencies": {
+    "@popperjs/core": "^2.10.1",
+    "bootstrap": "^5.1.1",
+    "core-js": "^3.18.0",
+    "jquery": "^3.6.0",
+    "parcel-bundler": "^1.12.5",
+    "popper.js": "^1.16.1",
+    "regenerator-runtime": "^0.13.9"
+  },
+  "devDependencies": {
+    "lodash-es": "^4.17.21",
+    "sass": "^1.41.1"
+  },
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
